@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" data-theme-pref="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{PAGE_TITLE}}</title>
+<meta name="description" content="{{PAGE_DESCRIPTION}}">
+<meta name="author" content="{{AUTHOR}}">
+{{ROBOTS_META}}
+<link rel="canonical" href="{{CANONICAL}}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAF8F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101322" media="(prefers-color-scheme: dark)">
+{{VERIFICATION_META}}
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{SITE_NAME}}">
+<meta property="og:title" content="{{PAGE_TITLE}}">
+<meta property="og:description" content="{{PAGE_DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:image:secure_url" content="{{OG_IMAGE}}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1536">
+<meta property="og:image:alt" content="The House by Austine Ojo, a book about life in Christ">
+<!-- X / Twitter card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{PAGE_TITLE}}">
+<meta name="twitter:description" content="{{PAGE_DESCRIPTION}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+<meta name="twitter:image:alt" content="The House by Austine Ojo, a book about life in Christ">
+<!-- Icons -->
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<!-- Apply saved appearance before first paint (no flash) -->
+<script>
+(function(){var p="system";try{p=localStorage.getItem("the-house-theme")||"system"}catch(e){}
+if(p!=="day"&&p!=="night")p="system";var d=document.documentElement;d.setAttribute("data-theme-pref",p);
+var dark=p==="night"||(p==="system"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
+d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="preload" as="image" href="assets/img/the-house-book-thumbnail-800.webp" imagesrcset="assets/img/the-house-book-thumbnail-480.webp 480w, assets/img/the-house-book-thumbnail-800.webp 800w, assets/img/the-house-book-thumbnail-1200.webp 1200w" imagesizes="(min-width: 960px) 520px, 88vw" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v={{VERSION}}">
+<script type="application/ld+json">
+{{JSON_LD}}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href="#top" aria-label="The House — back to top">
+      <svg class="wordmark-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4 15.5 16 5l12 10.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 13.5V27h16V13.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M14 27v-6.5h4V27" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <span>The House</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="menu-toggle-bars" aria-hidden="true"></span>
+      <span class="menu-toggle-label">Menu</span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About the Book</a></li>
+        <li><a href="#chapters">Chapters</a></li>
+        <li><a href="#author">The Author</a></li>
+        <li><a href="#get-the-book">Get the Book</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switch" role="group" aria-label="Appearance">
+      <button type="button" data-theme-choice="day" aria-pressed="false" title="Day appearance">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
+        <span class="theme-label">Day</span>
+      </button>
+      <button type="button" data-theme-choice="night" aria-pressed="false" title="Night appearance">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6Z" fill="currentColor"/></svg>
+        <span class="theme-label">Night</span>
+      </button>
+      <button type="button" data-theme-choice="system" aria-pressed="true" title="Match system appearance">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4.5" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 20h7M12 16.5V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="theme-label">System</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">A Christian book by {{AUTHOR}}</p>
+        <h1 id="hero-title">The House</h1>
+        <p class="hero-subtitle">2nd Corinthians 5:17</p>
+        <p class="hero-lead">Know God for yourself. Grow in your life in Christ.</p>
+        <p class="hero-body">The House invites you to look beyond religious routine and pursue a personal relationship with God. Across fifteen chapters, Austine Ojo explores identity in Christ, the knowledge of God, meditation, discipleship, and a life of prayer.</p>
+        <div class="button-row">
+          {{PRIMARY_CTA}}
+          {{SECONDARY_CTA}}
+        </div>
+        <p class="new-tab-note">Facebook opens in a new tab.</p>
+      </div>
+      <div class="hero-art">
+        <div class="book-frame">
+          <picture>
+            <source type="image/webp" srcset="assets/img/the-house-book-thumbnail-480.webp 480w, assets/img/the-house-book-thumbnail-800.webp 800w, assets/img/the-house-book-thumbnail-1200.webp 1200w" sizes="(min-width: 960px) 520px, 88vw">
+            <img src="assets/img/the-house-book-thumbnail-800.jpg" srcset="assets/img/the-house-book-thumbnail-800.jpg 800w, assets/the-house-book-thumbnail.jpg 1536w" sizes="(min-width: 960px) 520px, 88vw" width="1536" height="1536" alt="The House by Austine Ojo, a book about life in Christ" fetchpriority="high" decoding="async">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-intro">
+          <p class="section-kicker">About the Book</p>
+          <h2 id="about-title">A call to know the Father personally</h2>
+          <p class="prose">What does it mean to live as a new creation in Christ? In <cite>The House</cite>, Austine Ojo uses 2 Corinthians 5:17 as the central picture for exploring a believer's relationship with God. Drawing on Scripture, everyday illustrations, and personal testimony, he calls readers to seek God Himself, grow in understanding, and live out their faith in daily life.</p>
+        </div>
+        <ul class="theme-list" aria-label="Themes of the book">
+          <li class="theme-item">
+            <span class="theme-num" aria-hidden="true">01</span>
+            <h3>Identity in Christ</h3>
+            <p>Consider what it means to represent Christ in the world.</p>
+          </li>
+          <li class="theme-item">
+            <span class="theme-num" aria-hidden="true">02</span>
+            <h3>Knowing God</h3>
+            <p>Explore His presence, power, and the importance of spiritual understanding.</p>
+          </li>
+          <li class="theme-item">
+            <span class="theme-num" aria-hidden="true">03</span>
+            <h3>A life of devotion</h3>
+            <p>Make room for Scripture, meditation, and prayer.</p>
+          </li>
+          <li class="theme-item">
+            <span class="theme-num" aria-hidden="true">04</span>
+            <h3>Faith in action</h3>
+            <p>Reflect on discipleship, service, relationships, and sharing Christ with others.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTERS -->
+  <section class="section section-chapters" id="chapters" aria-labelledby="chapters-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Fifteen chapters</p>
+        <h2 id="chapters-title">Explore the fifteen chapters</h2>
+        <p class="prose">Follow the book's journey from your identity as Christ's ambassador to the habits and relationships that shape a life of prayer.</p>
+      </div>
+      <ol class="chapter-grid" role="list">
+{{CHAPTERS}}
+      </ol>
+    </div>
+  </section>
+
+  <!-- INSIDE / ARTWORK -->
+  <section class="section" id="inside" aria-labelledby="inside-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">The artwork</p>
+        <h2 id="inside-title">Inside the cover</h2>
+      </div>
+      <div class="gallery">
+        <figure class="gallery-item">
+          <div class="gallery-frame">
+            <picture>
+              <source type="image/webp" srcset="assets/img/the-house-wraparound-480.webp 480w, assets/img/the-house-wraparound-800.webp 800w, assets/img/the-house-wraparound-1200.webp 1200w" sizes="(min-width: 760px) 520px, 92vw">
+              <img src="assets/img/the-house-wraparound-800.jpg" width="1536" height="1536" alt="Front, spine and back cover of The House by Austine Ojo" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption>The cover of The House</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <div class="gallery-frame">
+            <picture>
+              <source type="image/webp" srcset="assets/img/the-house-angled-mockup-480.webp 480w, assets/img/the-house-angled-mockup-800.webp 800w, assets/img/the-house-angled-mockup-1200.webp 1200w" sizes="(min-width: 760px) 520px, 92vw">
+              <img src="assets/img/the-house-angled-mockup-800.jpg" width="1536" height="1536" alt="Angled book mockup of The House by Austine Ojo" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <figcaption>The House by Austine Ojo</figcaption>
+        </figure>
+      </div>
+      <dl class="book-details" aria-label="Book details">
+        <div><dt>Title</dt><dd>The House — 2nd Corinthians 5:17</dd></div>
+        <div><dt>Author</dt><dd>{{AUTHOR}}</dd></div>
+        <div><dt>Publisher</dt><dd>{{PUBLISHER}}</dd></div>
+        <div><dt>ISBN</dt><dd>{{ISBN_DISPLAY}}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section class="section section-author" id="author" aria-labelledby="author-title">
+    <div class="container author-grid">
+      <div class="author-portrait">
+        <picture>
+          <source type="image/webp" srcset="assets/img/austine-ojo-portrait-400.webp 400w, assets/img/austine-ojo-portrait-700.webp 700w, assets/img/austine-ojo-portrait-1097.webp 1097w" sizes="(min-width: 860px) 420px, 80vw">
+          <img src="assets/img/austine-ojo-portrait-700.jpg" width="1097" height="1536" alt="Austine Ojo, author of The House" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="author-copy">
+        <p class="section-kicker">The Author</p>
+        <h2 id="author-title">Meet Austine Ojo</h2>
+        <p class="prose">Austine Ojo is the author of <cite>The House</cite>. In the book, he shares Scripture reflections and personal experiences to encourage readers to know God for themselves and develop a personal, conversational relationship with Him.</p>
+        <a class="btn btn-ghost" href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" data-track="facebook-author">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg>
+          Visit Facebook<span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container narrow">
+      <div class="section-head">
+        <p class="section-kicker">Reader questions</p>
+        <h2 id="faq-title">Questions readers ask</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary><h3>What is The House about?</h3></summary>
+          <p>It explores life in Christ, knowing God personally, meditation, discipleship, and prayer through Scripture reflections and the author's experiences.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>Why is 2 Corinthians 5:17 on the cover?</h3></summary>
+          <p>The author uses the verse's theme of new life in Christ as the central picture of “the house” throughout the book.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>How many chapters are there?</h3></summary>
+          <p>There are fifteen chapters, from “Ambassador” to “Hindrances to Prayers.”</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>How can I get a copy?</h3></summary>
+          <p>{{FAQ_GET_COPY}}</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="section" id="get-the-book" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-panel">
+        <div class="cta-copy">
+          <h2 id="cta-title">Begin exploring The House</h2>
+          <p>Discover the themes, explore the chapters, and enquire about getting your copy.</p>
+          <div class="button-row">
+            {{CLOSING_CTAS}}
+          </div>
+        </div>
+        <div class="cta-art" aria-hidden="true">
+          <img src="assets/img/the-house-book-thumbnail-480.jpg" width="1536" height="1536" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p class="footer-title">The House</p>
+      <p class="footer-sub">2nd Corinthians 5:17 · by {{AUTHOR}}</p>
+      <a class="footer-social" href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" data-track="facebook-footer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg>
+        <span>Visit Facebook<span class="sr-only"> (opens in a new tab)</span></span>
+      </a>
+    </div>
+    <nav class="footer-nav" aria-labelledby="footer-nav-title">
+      <h2 class="footer-heading" id="footer-nav-title">Page navigation</h2>
+      <ul>
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About the Book</a></li>
+        <li><a href="#chapters">Chapters</a></li>
+        <li><a href="#inside">Inside the Cover</a></li>
+        <li><a href="#author">The Author</a></li>
+        <li><a href="#faq">Reader Questions</a></li>
+        <li><a href="#get-the-book">Get the Book</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container footer-base">
+    <p>The House · Austine Ojo</p>
+  </div>
+</footer>
+
+<script src="main.js?v={{VERSION}}" defer></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+dist/
+__pycache__/
+.DS_Store
+*.pdf
+*.mp4
+website-video-reference.jpg
