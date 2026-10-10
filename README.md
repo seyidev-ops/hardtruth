@@ -3,7 +3,7 @@
 A single-book landing page for **The House — 2nd Corinthians 5:17** by **Austine Ojo**.
 Static HTML, built from structured content, deployed to GitHub Pages.
 
-**Live:** https://seyidev-ops.github.io/hardtruth/
+**Live:** https://hardtruthgospelmission.org/ (the github.io address redirects there)
 
 ## How it is put together
 
@@ -41,25 +41,18 @@ The workflow publishes the built site to **both** the root of `main` and the `gh
 
 These files at the repo root are **generated — do not edit them by hand**: `index.html`, `styles.css`, `main.js`, `favicon.ico`, `icons/`, `site.webmanifest`, `sitemap.xml`, `robots.txt`, `.nojekyll`, `assets/img/`. Edit `src/`, `content/` or `site.config.json` instead and push; the workflow rebuilds.
 
-### Custom domain (hardtruthgospelmission.org)
+### Custom domain
 
-Switching is a one-line change: in `site.config.json` set `"customDomain": "hardtruthgospelmission.org"` and push. The build then writes the `CNAME` file and moves canonical, Open Graph, JSON-LD, sitemap and robots to `https://hardtruthgospelmission.org`.
+`customDomain` in `site.config.json` is `hardtruthgospelmission.org`. The build writes `CNAME` and uses `https://hardtruthgospelmission.org` for canonical, Open Graph, JSON-LD, sitemap and robots.
 
-**Do this only after DNS answers**, or the github.io address will redirect to a domain that does not load. As of 10 Oct 2026:
-- Nameservers `ns1/ns2.hostley.io` are not responding (registrar: PDR Ltd / PublicDomainRegistry, via Hostley).
-- **The domain expires on 25 Oct 2026. Renew it first.**
-
-DNS records to set at whichever DNS host is used:
+DNS (QServers nameservers `ns1/ns2.qservers.net`, switched 10 Oct 2026):
 
 | Type | Host | Value |
 |---|---|---|
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
+| A | @ | 185.199.108.153 · 185.199.109.153 · 185.199.110.153 · 185.199.111.153 |
 | CNAME | www | seyidev-ops.github.io |
 
-After pushing the config change: Settings → Pages → confirm the custom domain shows a green DNS check, then tick **Enforce HTTPS**.
+**The domain expires 25 Oct 2026. Keep auto-renew on.** After GitHub's DNS check passes, tick *Enforce HTTPS* in Settings → Pages.
 
 ## Notes and known limits
 
