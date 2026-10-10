@@ -16,7 +16,7 @@ Static HTML, built from structured content, deployed to GitHub Pages.
 | `assets/` | The four supplied images, unchanged |
 | `seo/*.template` | Sitemap and robots templates (`{{SITE_ORIGIN}}`) |
 | `scripts/build.py` | Builds everything into `dist/` and fails if tokens, placeholders or private files would ship |
-| `.github/workflows/deploy.yml` | Builds and deploys to GitHub Pages on every push to `main` |
+| `.github/workflows/deploy.yml` | Builds and publishes `dist/` to the `gh-pages` branch on every push to `main` |
 | `BUILD_BRIEF.md` | The original build specification |
 
 ## Build locally
@@ -31,9 +31,13 @@ cd dist && python3 -m http.server 8000   # open http://localhost:8000
 
 - **Purchase link becomes available:** set `purchaseUrl` in `site.config.json`. Every primary button switches to **Get Your Copy** automatically. Add price/format to the page copy only once confirmed.
 - **Stable Facebook page URL:** replace `facebookUrl`.
-- **Custom domain:** set `siteOrigin` to e.g. `https://thehousebook.com`, add a `CNAME` file containing the domain to `src/` handling (or in repo Settings → Pages → Custom domain), and point DNS at GitHub Pages. Canonical, Open Graph, JSON-LD, sitemap and robots all update from `siteOrigin`.
+- **Custom domain:** set `siteOrigin` to the new https origin, add the domain under repo Settings → Pages → Custom domain, and point DNS at GitHub Pages. Canonical, Open Graph, JSON-LD, sitemap and robots all update from `siteOrigin`.
 - **Hide from search (preview mode):** set `indexable` to `false` (adds `noindex`).
 - **Search Console / Bing:** paste the verification codes into `googleSiteVerification` / `bingSiteVerification`, push, then submit `sitemap.xml`.
+
+## Hosting
+
+GitHub Pages serves the `gh-pages` branch (Settings → Pages → Source: *Deploy from a branch*, `gh-pages` / root). Never edit `gh-pages` by hand; it is overwritten on every build.
 
 ## Notes and known limits
 
