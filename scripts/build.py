@@ -32,7 +32,7 @@ PUBLIC_IMAGES = {
 
 PAGE_TITLE = "The House by Austine Ojo | Life in Christ"
 PAGE_DESCRIPTION = ("Explore The House by Austine Ojo: 15 chapters on life in Christ, knowing God, "
-                    "meditation, discipleship and prayer. View chapter briefs and enquire.")
+                    "meditation, discipleship and prayer. View chapter briefs and order the eBook.")
 
 
 def fail(msg):
@@ -167,6 +167,10 @@ def json_ld(o):
                              "Christ, the knowledge of God, meditation, discipleship, and a life of prayer."),
              "image": f"{o}/assets/the-house-book-thumbnail.jpg",
              "url": page,
+             "bookFormat": "https://schema.org/EBook",
+             "offers": {"@type": "Offer", "price": CONFIG["offer"]["price"],
+                        "priceCurrency": CONFIG["offer"]["currency"], "url": purchase_url(),
+                        "seller": {"@type": "Organization", "name": CONFIG["facebookPageName"]}},
              "hasPart": [{"@type": "Chapter", "position": c["number"], "name": c["title"]} for c in CHAPTERS]},
             {"@type": "Person", "@id": f"{page}#author", "name": CONFIG["author"],
              "image": f"{o}/assets/austine-ojo-portrait.jpg"},
@@ -175,26 +179,53 @@ def json_ld(o):
     return json.dumps(graph, indent=2, ensure_ascii=False).replace("</", "<\\/")
 
 
+def whatsapp_url(with_message=True):
+    from urllib.parse import quote
+    num = re.sub(r"\D", "", CONFIG.get("whatsappNumber", ""))
+    if not num:
+        return ""
+    url = f"https://wa.me/{num}"
+    if with_message and CONFIG.get("orderMessage"):
+        url += "?text=" + quote(CONFIG["orderMessage"])
+    return url
+
+
+def purchase_url():
+    return CONFIG.get("purchaseUrl", "").strip() or whatsapp_url()
+
+
+WA_ICON = ('<svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" '
+           'd="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>')
+
+
 def ctas():
-    fb = esc(CONFIG["facebookUrl"])
-    purchase = CONFIG.get("purchaseUrl", "").strip()
-    fb_btn = (f'<a class="btn {{cls}}" href="{fb}" target="_blank" rel="noopener noreferrer" data-track="facebook-{{where}}">'
-              'Enquire on Facebook<span class="sr-only"> (opens in a new tab)</span></a>')
-    chapters_btn = '<a class="btn {cls}" href="#chapters" data-track="chapters-{where}">Explore the Chapters</a>'
-    if purchase:
-        buy = (f'<a class="btn btn-primary" href="{esc(purchase)}" data-track="purchase-{{where}}">Get Your Copy</a>')
-        primary = buy.format(where="hero")
-        secondary = chapters_btn.format(cls="btn-ghost", where="hero")
-        closing = buy.format(where="closing") + "\n            " + fb_btn.format(cls="btn-ghost", where="closing")
-        faq = "Use the Get Your Copy button on this page, or enquire on the Facebook page for current details."
-    else:
-        primary = chapters_btn.format(cls="btn-primary", where="hero")
-        secondary = fb_btn.format(cls="btn-ghost", where="hero")
-        closing = fb_btn.format(cls="btn-primary", where="closing") + "\n            " + chapters_btn.format(cls="btn-ghost", where="closing")
-        faq = (f'Visit the <a href="{fb}" target="_blank" rel="noopener noreferrer" data-track="facebook-faq">'
-               'Facebook page<span class="sr-only"> (opens in a new tab)</span></a> to enquire about current '
-               'availability, formats, and ordering details.')
+    buy = esc(purchase_url())
+    price = esc(CONFIG["offer"].get("priceDisplay", ""))
+    order_btn = (f'<a class="btn btn-primary" href="{buy}" target="_blank" rel="noopener noreferrer" data-track="order-{{where}}">'
+                 f'{WA_ICON}Order the eBook · {price}<span class="sr-only"> on WhatsApp (opens in a new tab)</span></a>')
+    chapters_btn = '<a class="btn btn-ghost" href="#chapters" data-track="chapters-{where}">Explore the Chapters</a>'
+    primary = order_btn.format(where="hero")
+    secondary = chapters_btn.format(where="hero")
+    closing = order_btn.format(where="closing")
+    faq = (f'Order the eBook for {price}. Transfer to the Hard Truth Gospel Mission account shown in '
+           f'<a href="#get-the-book">Order the eBook</a>, then send your proof of payment on WhatsApp to '
+           f'<a href="{esc(whatsapp_url(False))}" target="_blank" rel="noopener noreferrer" data-track="whatsapp-faq">'
+           f'{esc(CONFIG["whatsappDisplay"])}<span class="sr-only"> (opens in a new tab)</span></a>.')
     return primary, secondary, closing, faq
+
+
+def bank_accounts_html():
+    out = []
+    for acc in CONFIG["bankAccounts"]["accounts"]:
+        num = esc(acc["number"])
+        out.append(
+            f'          <li class="bank-card">\n'
+            f'            <p class="bank-cur"><span class="bank-code">{esc(acc["currency"])}</span> {esc(acc["label"])} account</p>\n'
+            f'            <p class="bank-num" id="acct-{esc(acc["currency"]).lower()}">{num}</p>\n'
+            f'            <button type="button" class="copy-btn" data-copy="{num}" aria-describedby="acct-{esc(acc["currency"]).lower()}">'
+            f'Copy<span class="sr-only"> {esc(acc["currency"])} account number</span></button>\n'
+            f'          </li>')
+    return "\n".join(out)
 
 
 def build_html(o):
@@ -223,6 +254,14 @@ def build_html(o):
         "SECONDARY_CTA": secondary,
         "CLOSING_CTAS": closing,
         "FAQ_GET_COPY": faq,
+        "PRICE_DISPLAY": esc(CONFIG["offer"]["priceDisplay"]),
+        "OFFER_FORMAT": esc(CONFIG["offer"]["format"]),
+        "WHATSAPP_URL": esc(whatsapp_url(False)),
+        "WHATSAPP_DISPLAY": esc(CONFIG["whatsappDisplay"]),
+        "FB_PAGE_NAME": esc(CONFIG["facebookPageName"]),
+        "ACCOUNT_NAME": esc(CONFIG["bankAccounts"]["accountName"]),
+        "BANK_NAME": esc(CONFIG["bankAccounts"]["bank"]),
+        "BANK_ACCOUNTS": bank_accounts_html(),
         "FACEBOOK_URL": esc(CONFIG["facebookUrl"]),
         "PUBLISHER": esc(CONFIG["publisher"]),
         "ISBN_DISPLAY": esc(CONFIG["isbnDisplay"]),

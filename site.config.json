@@ -12,12 +12,43 @@
   "facebookUrl": "https://www.facebook.com/share/1FLTpqYwCx/",
   "purchaseUrl": "",
   "offer": {
-    "price": "",
-    "currency": "",
-    "format": ""
+    "price": "3000",
+    "currency": "NGN",
+    "priceDisplay": "₦3,000",
+    "format": "eBook"
   },
   "indexable": true,
   "analyticsId": "",
   "googleSiteVerification": "",
-  "bingSiteVerification": ""
+  "bingSiteVerification": "",
+  "facebookPageName": "Hard Truth Gospel Mission",
+  "whatsappNumber": "2348037008560",
+  "whatsappDisplay": "+234 803 700 8560",
+  "orderMessage": "Hello, I would like to order the eBook of The House by Austine Ojo (₦3,000).",
+  "bankAccounts": {
+    "accountName": "HARD TRUTH GOSPEL MISSION",
+    "bank": "GTBank (Guaranty Trust Bank)",
+    "accounts": [
+      {
+        "currency": "NGN",
+        "label": "Naira",
+        "number": "3001633102"
+      },
+      {
+        "currency": "USD",
+        "label": "US Dollar",
+        "number": "3001633126"
+      },
+      {
+        "currency": "GBP",
+        "label": "British Pound",
+        "number": "3001633140"
+      },
+      {
+        "currency": "EUR",
+        "label": "Euro",
+        "number": "3001633164"
+      }
+    ]
+  }
 }

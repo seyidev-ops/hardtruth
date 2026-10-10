@@ -108,7 +108,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
           {{PRIMARY_CTA}}
           {{SECONDARY_CTA}}
         </div>
-        <p class="new-tab-note">Facebook opens in a new tab.</p>
+        <p class="hero-price">{{OFFER_FORMAT}} · <strong>{{PRICE_DISPLAY}}</strong> · order on WhatsApp</p>
       </div>
       <div class="hero-art">
         <div class="book-frame">
@@ -221,12 +221,48 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <p class="prose">Austine Ojo is the author of <cite>The House</cite>. In the book, he shares Scripture reflections and personal experiences to encourage readers to know God for themselves and develop a personal, conversational relationship with Him.</p>
         <a class="btn btn-ghost" href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" data-track="facebook-author">
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg>
-          Visit Facebook<span class="sr-only"> (opens in a new tab)</span>
+          Follow {{FB_PAGE_NAME}} on Facebook<span class="sr-only"> (opens in a new tab)</span>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- ORDER THE EBOOK -->
+  <section class="section" id="get-the-book" aria-labelledby="order-title">
+    <div class="container">
+      <div class="cta-panel order-panel">
+        <div class="cta-copy">
+          <p class="section-kicker">Get the eBook</p>
+          <h2 id="order-title">Order The House eBook</h2>
+          <p class="price-tag"><span class="price">{{PRICE_DISPLAY}}</span> <span class="price-format">{{OFFER_FORMAT}}</span></p>
+          <ol class="order-steps">
+            <li><strong>Make a transfer</strong> of {{PRICE_DISPLAY}} to the Hard Truth Gospel Mission account below.</li>
+            <li><strong>Send your proof of payment</strong> on WhatsApp to <a href="{{WHATSAPP_URL}}" target="_blank" rel="noopener noreferrer" data-track="whatsapp-number">{{WHATSAPP_DISPLAY}}</a>.</li>
+            <li><strong>Receive your eBook</strong> on WhatsApp.</li>
+          </ol>
+          <div class="button-row">
+            {{CLOSING_CTAS}}
+          </div>
+          <p class="new-tab-note">WhatsApp opens in a new tab or the WhatsApp app.</p>
+        </div>
+        <div class="cta-art" aria-hidden="true">
+          <img src="assets/img/the-house-book-thumbnail-480.jpg" width="1536" height="1536" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <div class="bank-panel" aria-labelledby="bank-title">
+        <h3 id="bank-title">Bank transfer details</h3>
+        <dl class="bank-meta">
+          <div><dt>Account name</dt><dd>{{ACCOUNT_NAME}}</dd></div>
+          <div><dt>Bank</dt><dd>{{BANK_NAME}}</dd></div>
+        </dl>
+        <ul class="bank-grid" role="list">
+{{BANK_ACCOUNTS}}
+        </ul>
+        <p class="bank-note">Paying from outside Nigeria? Use the USD, GBP or EUR account and confirm the amount with us on WhatsApp before you transfer.</p>
+      </div>
+    </div>
+  </section>
   <!-- FAQ -->
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="container narrow">
@@ -255,23 +291,6 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
     </div>
   </section>
 
-  <!-- CLOSING CTA -->
-  <section class="section" id="get-the-book" aria-labelledby="cta-title">
-    <div class="container">
-      <div class="cta-panel">
-        <div class="cta-copy">
-          <h2 id="cta-title">Begin exploring The House</h2>
-          <p>Discover the themes, explore the chapters, and enquire about getting your copy.</p>
-          <div class="button-row">
-            {{CLOSING_CTAS}}
-          </div>
-        </div>
-        <div class="cta-art" aria-hidden="true">
-          <img src="assets/img/the-house-book-thumbnail-480.jpg" width="1536" height="1536" alt="" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer">
@@ -281,7 +300,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
       <p class="footer-sub">2nd Corinthians 5:17 · by {{AUTHOR}}</p>
       <a class="footer-social" href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" data-track="facebook-footer">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg>
-        <span>Visit Facebook<span class="sr-only"> (opens in a new tab)</span></span>
+        <span>Follow {{FB_PAGE_NAME}} on Facebook<span class="sr-only"> (opens in a new tab)</span></span>
       </a>
     </div>
     <nav class="footer-nav" aria-labelledby="footer-nav-title">
@@ -292,13 +311,13 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <li><a href="#chapters">Chapters</a></li>
         <li><a href="#inside">Inside the Cover</a></li>
         <li><a href="#author">The Author</a></li>
+        <li><a href="#get-the-book">Order the eBook</a></li>
         <li><a href="#faq">Reader Questions</a></li>
-        <li><a href="#get-the-book">Get the Book</a></li>
       </ul>
     </nav>
   </div>
   <div class="container footer-base">
-    <p>The House · Austine Ojo</p>
+    <p>The House · Austine Ojo · {{FB_PAGE_NAME}} · WhatsApp <a href="{{WHATSAPP_URL}}" target="_blank" rel="noopener noreferrer" data-track="whatsapp-footer">{{WHATSAPP_DISPLAY}}</a></p>
   </div>
 </footer>
 

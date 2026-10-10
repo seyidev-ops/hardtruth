@@ -512,3 +512,63 @@ main:focus { outline: none; }
   .site-header, .theme-switch, .button-row, .cta-art { display: none; }
   body { background: #fff; color: #000; }
 }
+
+/* ---------- Order the eBook ---------- */
+.hero-price { margin: 14px 0 0; color: var(--muted); font-size: 0.98rem; }
+.hero-price strong { color: var(--text); }
+.price-tag { display: flex; align-items: baseline; gap: 10px; margin: 0 0 18px; }
+.price {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.6rem, 2rem + 2vw, 3.4rem); font-weight: 700; line-height: 1; color: var(--accent);
+}
+.price-format {
+  font-size: 0.82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px; background: var(--gold-soft); color: var(--text);
+}
+.order-steps { margin: 0 0 20px; padding-left: 1.3em; color: var(--muted); max-width: 56ch; }
+.order-steps li { margin-bottom: 8px; padding-left: 4px; }
+.order-steps li::marker { color: var(--accent); font-weight: 700; }
+.order-steps strong { color: var(--text); }
+.order-panel .cta-art { width: min(100%, 280px); }
+
+.bank-panel {
+  margin-top: 24px; padding: clamp(22px, 4vw, 36px);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+}
+.bank-panel h3 { font-size: 1.7rem; }
+.bank-meta { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 0 0 20px; }
+.bank-meta dt, .bank-cur {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+}
+.bank-meta dd { margin: 2px 0 0; font-weight: 700; font-size: 1.1rem; }
+.bank-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+}
+.bank-card {
+  position: relative; padding: 18px 18px 16px;
+  border-radius: 6px 16px 16px 6px; background: var(--surface-2); border: 1px solid var(--line);
+  overflow: hidden;
+}
+.bank-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+  background: linear-gradient(180deg, #F2CF6E, #C99124);
+}
+.bank-cur { margin: 0 0 6px; }
+.bank-code { color: var(--text); }
+.bank-num {
+  margin: 0 0 12px; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums; color: var(--text);
+}
+.copy-btn {
+  min-height: 40px; padding: 0 16px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--accent); background: transparent; color: var(--text);
+  font: inherit; font-size: 0.92rem; font-weight: 700;
+}
+.copy-btn:hover { background: var(--gold-soft); }
+.copy-btn.is-copied { background: var(--accent); color: var(--page); }
+.bank-note { margin: 18px 0 0; color: var(--muted); font-size: 0.98rem; }
+
+@media (max-width: 960px) { .bank-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .bank-grid { grid-template-columns: 1fr; } }

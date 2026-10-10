@@ -90,6 +90,29 @@
     }
   }
 
+  /* ---------- Copy account numbers ---------- */
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest("[data-copy]");
+    if (!btn) return;
+    var value = btn.getAttribute("data-copy");
+    var label = btn.querySelector(".sr-only");
+    var done = function () {
+      var original = btn.firstChild.nodeValue;
+      btn.classList.add("is-copied");
+      btn.firstChild.nodeValue = "Copied";
+      setTimeout(function () { btn.classList.remove("is-copied"); btn.firstChild.nodeValue = original; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(done, function () { /* blocked: number stays selectable on the page */ });
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = value; ta.setAttribute("readonly", ""); ta.style.position = "absolute"; ta.style.left = "-9999px";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (err) { /* user can select the number manually */ }
+      document.body.removeChild(ta);
+    }
+  });
+
   /* ---------- Lightweight event hooks (no analytics loaded unless configured) ---------- */
   document.addEventListener("click", function (e) {
     var el = e.target.closest && e.target.closest("[data-track]");
