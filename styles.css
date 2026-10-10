@@ -539,8 +539,41 @@ html:not(.js) .nav-cta { display: none; }
 }
 .footer-nav ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
 .footer-nav a { display: inline-flex; align-items: center; min-height: 40px; color: var(--text); }
-.footer-base { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.footer-share { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+.footer-share-note { color: var(--muted); margin: 0 0 12px; }
+.share-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.share-btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+  border-radius: 999px; border: 1px solid var(--line); background: var(--glass);
+  color: var(--text); text-decoration: none; font: inherit; font-weight: 600; font-size: .95rem; cursor: pointer;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.share-btn:hover { border-color: var(--gold); transform: translateY(-1px); }
+.share-btn svg { width: 19px; height: 19px; flex: none; color: var(--accent); }
+.share-btn.is-copied { border-color: var(--gold); }
+.footer-base {
+  margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 20px;
+}
 .footer-base p { margin: 0; }
+.footer-legal { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 18px; }
+.footer-legal a { display: inline-flex; align-items: center; min-height: 40px; color: var(--muted); }
+.footer-legal a:hover { color: var(--text); }
+
+/* Policy pages */
+.policy-page .site-footer { padding-bottom: 40px; }
+.policy { padding-top: 40px; }
+.policy h1 { font-size: clamp(2.4rem, 1.8rem + 2.6vw, 3.4rem); margin-bottom: .2em; }
+.policy h2 { font-size: clamp(1.5rem, 1.3rem + 1vw, 1.9rem); margin-top: 1.6em; }
+.policy p, .policy li { max-width: 68ch; }
+.policy ul { padding-left: 1.2em; margin: 0 0 1em; }
+.policy li { margin-bottom: .5em; }
+.policy-updated { color: var(--muted); font-size: .95rem; margin-bottom: 1.6em; }
+.policy-back { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; font-weight: 600; color: var(--text); text-decoration: none; }
+.policy-back::before { content: "\2190"; margin-right: 6px; color: var(--accent); }
+.policy-back:hover { color: var(--accent); }
+.policy-page .wordmark, .policy-back { white-space: nowrap; }
+@media (max-width: 479px) { .policy-back-long { display: none; } }
 
 /* Floating WhatsApp order button (phones) */
 .wa-fab {
@@ -659,7 +692,7 @@ html:not(.js) .wa-fab { display: none; }
 }
 
 @media print {
-  .site-header, .button-row, .wa-fab, .hero-glow, .rail-controls { display: none; }
+  .site-header, .button-row, .wa-fab, .hero-glow, .rail-controls, .footer-share { display: none; }
   body { background: #fff; color: #000; }
 }
 
