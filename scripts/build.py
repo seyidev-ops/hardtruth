@@ -45,6 +45,11 @@ def esc(s):
 
 
 def origin():
+    domain = CONFIG.get("customDomain", "").strip().lower()
+    if domain:
+        if not re.fullmatch(r"[a-z0-9.-]+\.[a-z]{2,}", domain):
+            fail(f"customDomain '{domain}' is not a valid hostname")
+        return f"https://{domain}"
     o = CONFIG.get("siteOrigin", "").rstrip("/")
     if not o.startswith("https://") or "example" in o or "localhost" in o:
         fail("siteOrigin in site.config.json must be the real https production origin.")
@@ -255,6 +260,9 @@ def main():
     build_html(o)
     build_seo(o)
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
+    domain = CONFIG.get("customDomain", "").strip().lower()
+    if domain:
+        (DIST / "CNAME").write_text(domain + "\n", encoding="utf-8")
     # Guardrails: nothing private or placeholder ships
     for p in DIST.rglob("*"):
         low = p.name.lower()

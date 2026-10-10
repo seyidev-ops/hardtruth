@@ -1,5 +1,7 @@
 {
   "siteOrigin": "https://seyidev-ops.github.io/hardtruth",
+  "customDomain": "",
+  "_customDomainWhenDnsReady": "hardtruthgospelmission.org",
   "siteName": "The House",
   "bookTitle": "The House",
   "bookSubtitle": "2nd Corinthians 5:17",
@@ -9,7 +11,11 @@
   "publisher": "Mine Shelter Nigeria Limited",
   "facebookUrl": "https://www.facebook.com/share/1FLTpqYwCx/",
   "purchaseUrl": "",
-  "offer": { "price": "", "currency": "", "format": "" },
+  "offer": {
+    "price": "",
+    "currency": "",
+    "format": ""
+  },
   "indexable": true,
   "analyticsId": "",
   "googleSiteVerification": "",

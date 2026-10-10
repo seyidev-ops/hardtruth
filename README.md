@@ -43,10 +43,23 @@ These files at the repo root are **generated — do not edit them by hand**: `in
 
 ### Custom domain (hardtruthgospelmission.org)
 
-As of 10 Oct 2026 the domain's nameservers (`ns1/ns2.hostley.io`) do not respond, so it cannot point anywhere yet. When DNS is fixed:
-1. At the DNS host add A records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and a CNAME for `www` → `seyidev-ops.github.io`.
-2. Set `siteOrigin` in `site.config.json` to `https://hardtruthgospelmission.org` and push.
-3. In Settings → Pages enter the custom domain, wait for the check, then tick *Enforce HTTPS*.
+Switching is a one-line change: in `site.config.json` set `"customDomain": "hardtruthgospelmission.org"` and push. The build then writes the `CNAME` file and moves canonical, Open Graph, JSON-LD, sitemap and robots to `https://hardtruthgospelmission.org`.
+
+**Do this only after DNS answers**, or the github.io address will redirect to a domain that does not load. As of 10 Oct 2026:
+- Nameservers `ns1/ns2.hostley.io` are not responding (registrar: PDR Ltd / PublicDomainRegistry, via Hostley).
+- **The domain expires on 25 Oct 2026. Renew it first.**
+
+DNS records to set at whichever DNS host is used:
+
+| Type | Host | Value |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | seyidev-ops.github.io |
+
+After pushing the config change: Settings → Pages → confirm the custom domain shows a green DNS check, then tick **Enforce HTTPS**.
 
 ## Notes and known limits
 
