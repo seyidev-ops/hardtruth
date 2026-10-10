@@ -29,6 +29,8 @@ PUBLIC_IMAGES = {
     "the-house-angled-mockup.jpg": [480, 800, 1200],
     "austine-ojo-portrait.jpg": [400, 700, 1097],
 }
+# Transparent cut-out of the hero book (made by scripts/cutout_book.py from the thumbnail)
+CUTOUT = ("the-house-book-cutout.png", [360, 560, 786])
 
 PAGE_TITLE = "The House by Austine Ojo | Life in Christ"
 PAGE_DESCRIPTION = ("Explore The House by Austine Ojo: 15 chapters on life in Christ, knowing God, "
@@ -74,6 +76,16 @@ def build_images():
             v = im if w == im.width else im.resize((w, h), Image.LANCZOS)
             v.save(out_dir / f"{stem}-{w}.webp", "WEBP", quality=82, method=6)
             v.save(out_dir / f"{stem}-{w}.jpg", "JPEG", quality=84, optimize=True, progressive=True)
+    name, widths = CUTOUT
+    src = src_dir / name
+    if not src.exists():
+        fail(f"missing {src}: run python3 scripts/cutout_book.py")
+    im = Image.open(src).convert("RGBA")
+    for w in widths:
+        h = round(im.height * w / im.width)
+        v = im if w == im.width else im.resize((w, h), Image.LANCZOS)
+        v.save(out_dir / f"{src.stem}-{w}.webp", "WEBP", quality=86, method=6)
+        v.save(out_dir / f"{src.stem}-{w}.png", "PNG", optimize=True)
 
 
 def house_icon(size, pad_ratio=0.0, rounded=True):
@@ -138,7 +150,7 @@ def chapters_html():
     for ch in CHAPTERS:
         n = int(ch["number"])
         out.append(
-            f'        <li class="chapter-card" id="chapter-{n:02d}">\n'
+            f'        <li class="chapter-card" id="chapter-{n:02d}" data-num="{n:02d}">\n'
             f'          <p class="chapter-num">Chapter {n:02d}</p>\n'
             f'          <h3>{esc(ch["title"])}</h3>\n'
             f'          <p>{esc(ch["summary"])}</p>\n'
@@ -179,14 +191,14 @@ def json_ld(o):
     return json.dumps(graph, indent=2, ensure_ascii=False).replace("</", "<\\/")
 
 
-def whatsapp_url(with_message=True):
+def whatsapp_url(with_message=True, message_key="orderMessage"):
     from urllib.parse import quote
     num = re.sub(r"\D", "", CONFIG.get("whatsappNumber", ""))
     if not num:
         return ""
     url = f"https://wa.me/{num}"
-    if with_message and CONFIG.get("orderMessage"):
-        url += "?text=" + quote(CONFIG["orderMessage"])
+    if with_message and CONFIG.get(message_key):
+        url += "?text=" + quote(CONFIG[message_key])
     return url
 
 
@@ -216,14 +228,19 @@ def ctas():
 
 def bank_accounts_html():
     out = []
+    copy_icon = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2.5" '
+                 'fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" '
+                 'fill="none" stroke="currentColor" stroke-width="2"/></svg>')
     for acc in CONFIG["bankAccounts"]["accounts"]:
         num = esc(acc["number"])
+        cur = esc(acc["currency"])
         out.append(
-            f'          <li class="bank-card">\n'
-            f'            <p class="bank-cur"><span class="bank-code">{esc(acc["currency"])}</span> {esc(acc["label"])} account</p>\n'
-            f'            <p class="bank-num" id="acct-{esc(acc["currency"]).lower()}">{num}</p>\n'
-            f'            <button type="button" class="copy-btn" data-copy="{num}" aria-describedby="acct-{esc(acc["currency"]).lower()}">'
-            f'Copy<span class="sr-only"> {esc(acc["currency"])} account number</span></button>\n'
+            f'          <li class="bank-row">\n'
+            f'            <span class="bank-code" aria-hidden="true">{cur}</span>\n'
+            f'            <span class="bank-info"><span class="bank-cur">{esc(acc["label"])} ({cur})</span>'
+            f'<span class="bank-num" id="acct-{cur.lower()}">{num}</span></span>\n'
+            f'            <button type="button" class="copy-btn" data-copy="{num}" aria-describedby="acct-{cur.lower()}">'
+            f'{copy_icon}<span class="copy-label">Copy</span><span class="sr-only"> {cur} account number</span></button>\n'
             f'          </li>')
     return "\n".join(out)
 
@@ -257,6 +274,8 @@ def build_html(o):
         "PRICE_DISPLAY": esc(CONFIG["offer"]["priceDisplay"]),
         "OFFER_FORMAT": esc(CONFIG["offer"]["format"]),
         "WHATSAPP_URL": esc(whatsapp_url(False)),
+        "ORDER_URL": esc(purchase_url()),
+        "PAPERBACK_URL": esc(whatsapp_url(True, "paperbackMessage")),
         "WHATSAPP_DISPLAY": esc(CONFIG["whatsappDisplay"]),
         "FB_PAGE_NAME": esc(CONFIG["facebookPageName"]),
         "ACCOUNT_NAME": esc(CONFIG["bankAccounts"]["accountName"]),

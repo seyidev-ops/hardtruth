@@ -46,8 +46,8 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;600;700&display=swap">
-<link rel="preload" as="image" href="assets/img/the-house-book-thumbnail-800.webp" imagesrcset="assets/img/the-house-book-thumbnail-480.webp 480w, assets/img/the-house-book-thumbnail-800.webp 800w, assets/img/the-house-book-thumbnail-1200.webp 1200w" imagesizes="(min-width: 960px) 520px, 88vw" type="image/webp" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=202610100423">
+<link rel="preload" as="image" href="assets/img/the-house-book-cutout-560.webp" imagesrcset="assets/img/the-house-book-cutout-360.webp 360w, assets/img/the-house-book-cutout-560.webp 560w, assets/img/the-house-book-cutout-786.webp 786w" imagesizes="(min-width: 960px) 380px, 62vw" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=202610100451">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -208,42 +208,47 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
       <span>The House</span>
     </a>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-      <span class="menu-toggle-bars" aria-hidden="true"></span>
-      <span class="menu-toggle-label">Menu</span>
-    </button>
-
     <nav class="primary-nav" id="primary-nav" aria-label="Main">
       <ul>
-        <li><a href="#about">About the Book</a></li>
-        <li><a href="#chapters">Chapters</a></li>
-        <li><a href="#author">The Author</a></li>
-        <li><a href="#get-the-book">Get the Book</a></li>
+        <li><a href="#about"><span class="nav-num" aria-hidden="true">01</span>About the Book</a></li>
+        <li><a href="#chapters"><span class="nav-num" aria-hidden="true">02</span>Chapters</a></li>
+        <li><a href="#author"><span class="nav-num" aria-hidden="true">03</span>The Author</a></li>
+        <li><a href="#get-the-book"><span class="nav-num" aria-hidden="true">04</span>Get the Book</a></li>
       </ul>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/2348037008560?text=Hello%2C%20I%20would%20like%20to%20order%20the%20eBook%20of%20The%20House%20by%20Austine%20Ojo%20%28%E2%82%A63%2C000%29." target="_blank" rel="noopener noreferrer" data-track="order-menu"><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>Order the eBook · ₦3,000<span class="sr-only"> on WhatsApp (opens in a new tab)</span></a>
     </nav>
 
-    <div class="theme-switch" role="group" aria-label="Appearance">
-      <button type="button" data-theme-choice="day" aria-pressed="false" title="Day appearance">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
-        <span class="theme-label">Day</span>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Appearance: System. Switch to Day" title="Appearance: System">
+        <svg class="ti ti-day" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
+        <svg class="ti ti-night" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6Z" fill="currentColor"/></svg>
+        <svg class="ti ti-system" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor"/></svg>
+        <span class="theme-toggle-label" aria-hidden="true">System</span>
       </button>
-      <button type="button" data-theme-choice="night" aria-pressed="false" title="Night appearance">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6Z" fill="currentColor"/></svg>
-        <span class="theme-label">Night</span>
-      </button>
-      <button type="button" data-theme-choice="system" aria-pressed="true" title="Match system appearance">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4.5" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 20h7M12 16.5V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <span class="theme-label">System</span>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span class="menu-toggle-bars" aria-hidden="true"></span>
       </button>
     </div>
   </div>
+  <p class="sr-only" aria-live="polite" id="theme-status"></p>
 </header>
 
 <main id="main" tabindex="-1">
 
   <!-- HERO -->
   <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-glow" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span></div>
     <div class="container hero-grid">
+      <div class="hero-art">
+        <div class="book-stage">
+          <span class="book-halo" aria-hidden="true"></span>
+          <picture>
+            <source type="image/webp" srcset="assets/img/the-house-book-cutout-360.webp 360w, assets/img/the-house-book-cutout-560.webp 560w, assets/img/the-house-book-cutout-786.webp 786w" sizes="(min-width: 960px) 380px, 62vw">
+            <img class="book-float" src="assets/img/the-house-book-cutout-560.png" width="786" height="1337" alt="The House by Austine Ojo, a book about life in Christ" fetchpriority="high" decoding="async">
+          </picture>
+          <span class="book-shadow" aria-hidden="true"></span>
+        </div>
+      </div>
       <div class="hero-copy">
         <p class="eyebrow">A Christian book by Austine Ojo</p>
         <h1 id="hero-title">The House</h1>
@@ -254,17 +259,17 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
           <a class="btn btn-primary" href="https://wa.me/2348037008560?text=Hello%2C%20I%20would%20like%20to%20order%20the%20eBook%20of%20The%20House%20by%20Austine%20Ojo%20%28%E2%82%A63%2C000%29." target="_blank" rel="noopener noreferrer" data-track="order-hero"><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>Order the eBook · ₦3,000<span class="sr-only"> on WhatsApp (opens in a new tab)</span></a>
           <a class="btn btn-ghost" href="#chapters" data-track="chapters-hero">Explore the Chapters</a>
         </div>
-        <p class="hero-price">eBook · <strong>₦3,000</strong> · order on WhatsApp</p>
-      </div>
-      <div class="hero-art">
-        <div class="book-frame">
-          <picture>
-            <source type="image/webp" srcset="assets/img/the-house-book-thumbnail-480.webp 480w, assets/img/the-house-book-thumbnail-800.webp 800w, assets/img/the-house-book-thumbnail-1200.webp 1200w" sizes="(min-width: 960px) 520px, 88vw">
-            <img src="assets/img/the-house-book-thumbnail-800.jpg" srcset="assets/img/the-house-book-thumbnail-800.jpg 800w, assets/the-house-book-thumbnail.jpg 1536w" sizes="(min-width: 960px) 520px, 88vw" width="1536" height="1536" alt="The House by Austine Ojo, a book about life in Christ" fetchpriority="high" decoding="async">
-          </picture>
-        </div>
+        <a class="paperback-pill" href="https://wa.me/2348037008560?text=Hello%2C%20I%20would%20like%20to%20order%20a%20paperback%20copy%20of%20The%20House%20by%20Austine%20Ojo." target="_blank" rel="noopener noreferrer" data-track="paperback-hero">
+          <span class="pill-dot" aria-hidden="true"></span>Paperback available on WhatsApp<span class="sr-only"> (opens in a new tab)</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
+    <ul class="container quick-facts" aria-label="At a glance">
+      <li><strong>15</strong><span>chapters</span></li>
+      <li><strong>5:17</strong><span>2 Corinthians</span></li>
+      <li><strong>₦3,000</strong><span>eBook</span></li>
+    </ul>
   </section>
 
   <!-- ABOUT -->
@@ -278,22 +283,22 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         </div>
         <ul class="theme-list" aria-label="Themes of the book">
           <li class="theme-item">
-            <span class="theme-num" aria-hidden="true">01</span>
+            <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 8v7M9 11h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
             <h3>Identity in Christ</h3>
             <p>Consider what it means to represent Christ in the world.</p>
           </li>
           <li class="theme-item">
-            <span class="theme-num" aria-hidden="true">02</span>
+            <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
             <h3>Knowing God</h3>
             <p>Explore His presence, power, and the importance of spiritual understanding.</p>
           </li>
           <li class="theme-item">
-            <span class="theme-num" aria-hidden="true">03</span>
+            <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5C6.5 4.3 9.3 4.4 12 6c2.7-1.6 5.5-1.7 8-.5V19c-2.5-1.2-5.3-1.1-8 .5-2.7-1.6-5.5-1.7-8-.5V5.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 6v13.5" stroke="currentColor" stroke-width="1.8"/></svg></span>
             <h3>A life of devotion</h3>
             <p>Make room for Scripture, meditation, and prayer.</p>
           </li>
           <li class="theme-item">
-            <span class="theme-num" aria-hidden="true">04</span>
+            <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
             <h3>Faith in action</h3>
             <p>Reflect on discipleship, service, relationships, and sharing Christ with others.</p>
           </li>
@@ -310,83 +315,91 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <h2 id="chapters-title">Explore the fifteen chapters</h2>
         <p class="prose">Follow the book's journey from your identity as Christ's ambassador to the habits and relationships that shape a life of prayer.</p>
       </div>
-      <ol class="chapter-grid" role="list">
-        <li class="chapter-card" id="chapter-01">
+    </div>
+    <div class="chapter-rail">
+      <ol class="container chapter-grid" id="chapter-list" role="list" tabindex="0" aria-label="Chapters, swipe to browse on small screens">
+        <li class="chapter-card" id="chapter-01" data-num="01">
           <p class="chapter-num">Chapter 01</p>
           <h3>Ambassador</h3>
           <p>What does it mean to represent Christ in everyday life? This chapter uses the role of an ambassador to examine the believer&#x27;s responsibilities, priorities, and conduct, calling readers to seek God&#x27;s kingdom rather than make personal gain the centre of their faith.</p>
         </li>
-        <li class="chapter-card" id="chapter-02">
+        <li class="chapter-card" id="chapter-02" data-num="02">
           <p class="chapter-num">Chapter 02</p>
           <h3>Solution From God</h3>
           <p>Through biblical examples of choice, warning, and response, this chapter considers how people respond to God&#x27;s direction. It invites reflection on repentance, responsibility, and the role of parents in teaching their children the ways of God.</p>
         </li>
-        <li class="chapter-card" id="chapter-03">
+        <li class="chapter-card" id="chapter-03" data-num="03">
           <p class="chapter-num">Chapter 03</p>
           <h3>God Is Everywhere</h3>
           <p>Reflect on God&#x27;s presence and the meaning of new life in Christ. Austine Ojo develops the book&#x27;s central picture of 2 Corinthians 5:17 as “the house,” inviting readers to consider repentance, belonging, and their relationship with the Father through Jesus.</p>
         </li>
-        <li class="chapter-card" id="chapter-04">
+        <li class="chapter-card" id="chapter-04" data-num="04">
           <p class="chapter-num">Chapter 04</p>
           <h3>Omnipotent God</h3>
           <p>This chapter reflects on God&#x27;s unlimited power and the place of His Word in the believer&#x27;s life. It also challenges the elevation of human ministers above God, urging readers to direct their worship and gratitude to Him.</p>
         </li>
-        <li class="chapter-card" id="chapter-05">
+        <li class="chapter-card" id="chapter-05" data-num="05">
           <p class="chapter-num">Chapter 05</p>
           <h3>The Almighty Healer Omniscience God</h3>
           <p>Explore the author&#x27;s reflections on God as all-knowing and as healer, through Scripture and testimony. The chapter emphasizes faith and discernment, including the need to examine spiritual claims carefully; it explicitly states that trusting God is not a rejection of medical help.</p>
         </li>
-        <li class="chapter-card" id="chapter-06">
+        <li class="chapter-card" id="chapter-06" data-num="06">
           <p class="chapter-num">Chapter 06</p>
           <h3>Ask for Knowledge</h3>
           <p>Why does spiritual understanding matter? Through Scripture and personal testimony, the author reflects on knowledge, patience, and learning to seek God&#x27;s direction. He connects the pursuit of understanding with the choices and challenges of everyday life.</p>
         </li>
-        <li class="chapter-card" id="chapter-07">
+        <li class="chapter-card" id="chapter-07" data-num="07">
           <p class="chapter-num">Chapter 07</p>
           <h3>The Church Is Here</h3>
           <p>Beginning with Peter and John&#x27;s encounter with the man at the temple gate, this chapter asks what it means for God&#x27;s presence to be expressed through His people. It challenges readers to look beyond buildings and religious display to a living faith in Christ.</p>
         </li>
-        <li class="chapter-card" id="chapter-08">
+        <li class="chapter-card" id="chapter-08" data-num="08">
           <p class="chapter-num">Chapter 08</p>
           <h3>Beware of Wrong Yoke</h3>
           <p>Consider the relationships, teachings, and influences that shape your walk with God. This chapter warns against deceptive traditions and divided loyalties, encouraging readers to examine their associations and keep their devotion centred on Christ.</p>
         </li>
-        <li class="chapter-card" id="chapter-09">
+        <li class="chapter-card" id="chapter-09" data-num="09">
           <p class="chapter-num">Chapter 09</p>
           <h3>Train Yourself in Meditation</h3>
           <p>Make deliberate room for God&#x27;s Word. This chapter encourages the practice of Scripture meditation, quiet reflection, and personal fellowship with God, presenting these habits as part of growing in understanding and becoming equipped for a life of faith.</p>
         </li>
-        <li class="chapter-card" id="chapter-10">
+        <li class="chapter-card" id="chapter-10" data-num="10">
           <p class="chapter-num">Chapter 10</p>
           <h3>Pyramid</h3>
           <p>Using a pyramid as an illustration, the author considers the shared responsibility of encouraging others and bringing people to Christ. The chapter calls readers to care about others&#x27; spiritual growth and to make sharing their faith part of daily life.</p>
         </li>
-        <li class="chapter-card" id="chapter-11">
+        <li class="chapter-card" id="chapter-11" data-num="11">
           <p class="chapter-num">Chapter 11</p>
           <h3>How Fortified Are You for This Venture?</h3>
           <p>What prepares a believer to serve and share Christ with others? This chapter presents discipleship as a process of training, surrender, and growth, asking readers to examine self-interest and become willing to learn under Christ&#x27;s direction.</p>
         </li>
-        <li class="chapter-card" id="chapter-12">
+        <li class="chapter-card" id="chapter-12" data-num="12">
           <p class="chapter-num">Chapter 12</p>
           <h3>What Will You Have Me Do?</h3>
           <p>Drawing on Paul&#x27;s encounter with Christ, this chapter explores a response of willing service. It asks readers to consider how renewed life in Christ should shape their direction, obedience, and desire to participate in God&#x27;s work.</p>
         </li>
-        <li class="chapter-card" id="chapter-13">
+        <li class="chapter-card" id="chapter-13" data-num="13">
           <p class="chapter-num">Chapter 13</p>
           <h3>Stop Seeking God&#x27;s Hand, Seek His Face</h3>
           <p>Are you seeking only what God can give, or seeking to know Him? This chapter turns attention to fellowship with God, considering the relationship between asking, faith, patience, and the desire to draw near to the Father.</p>
         </li>
-        <li class="chapter-card" id="chapter-14">
+        <li class="chapter-card" id="chapter-14" data-num="14">
           <p class="chapter-num">Chapter 14</p>
           <h3>Prayer Is Everything</h3>
           <p>This chapter encourages persistence in prayer and explores different expressions of it, including petition, thanksgiving, and intercession. It connects prayer with love for others, gratitude, commitment, and the integrity of the life behind the words.</p>
         </li>
-        <li class="chapter-card" id="chapter-15">
+        <li class="chapter-card" id="chapter-15" data-num="15">
           <p class="chapter-num">Chapter 15</p>
           <h3>Hindrances to Prayers</h3>
           <p>Examine the attitudes and habits that the author identifies as obstacles to prayer. With attention to forgiveness, peace in the home, and persistent patterns of sin, the chapter calls readers to honest self-examination and a readiness to change.</p>
         </li>
       </ol>
+    </div>
+    <div class="container rail-controls" aria-hidden="true">
+      <button type="button" class="rail-btn" data-rail="prev" tabindex="-1" aria-label="Previous chapter"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="rail-progress"><span class="rail-bar" id="rail-bar"></span></div>
+      <span class="rail-count" id="rail-count">01 / 15</span>
+      <button type="button" class="rail-btn" data-rail="next" tabindex="-1" aria-label="Next chapter"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </section>
 
@@ -401,7 +414,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <figure class="gallery-item">
           <div class="gallery-frame">
             <picture>
-              <source type="image/webp" srcset="assets/img/the-house-wraparound-480.webp 480w, assets/img/the-house-wraparound-800.webp 800w, assets/img/the-house-wraparound-1200.webp 1200w" sizes="(min-width: 760px) 520px, 92vw">
+              <source type="image/webp" srcset="assets/img/the-house-wraparound-480.webp 480w, assets/img/the-house-wraparound-800.webp 800w, assets/img/the-house-wraparound-1200.webp 1200w" sizes="(min-width: 760px) 520px, 80vw">
               <img src="assets/img/the-house-wraparound-800.jpg" width="1536" height="1536" alt="Front, spine and back cover of The House by Austine Ojo" loading="lazy" decoding="async">
             </picture>
           </div>
@@ -410,7 +423,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <figure class="gallery-item">
           <div class="gallery-frame">
             <picture>
-              <source type="image/webp" srcset="assets/img/the-house-angled-mockup-480.webp 480w, assets/img/the-house-angled-mockup-800.webp 800w, assets/img/the-house-angled-mockup-1200.webp 1200w" sizes="(min-width: 760px) 520px, 92vw">
+              <source type="image/webp" srcset="assets/img/the-house-angled-mockup-480.webp 480w, assets/img/the-house-angled-mockup-800.webp 800w, assets/img/the-house-angled-mockup-1200.webp 1200w" sizes="(min-width: 760px) 520px, 80vw">
               <img src="assets/img/the-house-angled-mockup-800.jpg" width="1536" height="1536" alt="Angled book mockup of The House by Austine Ojo" loading="lazy" decoding="async">
             </picture>
           </div>
@@ -431,7 +444,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
     <div class="container author-grid">
       <div class="author-portrait">
         <picture>
-          <source type="image/webp" srcset="assets/img/austine-ojo-portrait-400.webp 400w, assets/img/austine-ojo-portrait-700.webp 700w, assets/img/austine-ojo-portrait-1097.webp 1097w" sizes="(min-width: 860px) 420px, 80vw">
+          <source type="image/webp" srcset="assets/img/austine-ojo-portrait-400.webp 400w, assets/img/austine-ojo-portrait-700.webp 700w, assets/img/austine-ojo-portrait-1097.webp 1097w" sizes="(min-width: 860px) 420px, 70vw">
           <img src="assets/img/austine-ojo-portrait-700.jpg" width="1097" height="1536" alt="Austine Ojo, author of The House" loading="lazy" decoding="async">
         </picture>
       </div>
@@ -441,7 +454,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <p class="prose">Austine Ojo is the author of <cite>The House</cite>. In the book, he shares Scripture reflections and personal experiences to encourage readers to know God for themselves and develop a personal, conversational relationship with Him.</p>
         <a class="btn btn-ghost" href="https://www.facebook.com/share/1FLTpqYwCx/" target="_blank" rel="noopener noreferrer" data-track="facebook-author">
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg>
-          Follow Hard Truth Gospel Mission on Facebook<span class="sr-only"> (opens in a new tab)</span>
+          Follow Hard Truth Gospel Mission<span class="sr-only"> on Facebook (opens in a new tab)</span>
         </a>
       </div>
     </div>
@@ -450,58 +463,62 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
   <!-- ORDER THE EBOOK -->
   <section class="section" id="get-the-book" aria-labelledby="order-title">
     <div class="container">
-      <div class="cta-panel order-panel">
-        <div class="cta-copy">
+      <div class="order-panel">
+        <div class="order-glow" aria-hidden="true"></div>
+        <div class="order-copy">
           <p class="section-kicker">Get the eBook</p>
-          <h2 id="order-title">Order The House eBook</h2>
+          <h2 id="order-title">Order The House</h2>
           <p class="price-tag"><span class="price">₦3,000</span> <span class="price-format">eBook</span></p>
           <ol class="order-steps">
-            <li><strong>Make a transfer</strong> of ₦3,000 to the Hard Truth Gospel Mission account below.</li>
-            <li><strong>Send your proof of payment</strong> on WhatsApp to <a href="https://wa.me/2348037008560" target="_blank" rel="noopener noreferrer" data-track="whatsapp-number">+234 803 700 8560</a>.</li>
-            <li><strong>Receive your eBook</strong> on WhatsApp.</li>
+            <li><span class="step-num" aria-hidden="true">1</span><span><strong>Transfer ₦3,000</strong> to the account below</span></li>
+            <li><span class="step-num" aria-hidden="true">2</span><span><strong>Send proof</strong> on WhatsApp to <a href="https://wa.me/2348037008560" target="_blank" rel="noopener noreferrer" data-track="whatsapp-number">+234 803 700 8560</a></span></li>
+            <li><span class="step-num" aria-hidden="true">3</span><span><strong>Receive your eBook</strong> on WhatsApp</span></li>
           </ol>
           <div class="button-row">
             <a class="btn btn-primary" href="https://wa.me/2348037008560?text=Hello%2C%20I%20would%20like%20to%20order%20the%20eBook%20of%20The%20House%20by%20Austine%20Ojo%20%28%E2%82%A63%2C000%29." target="_blank" rel="noopener noreferrer" data-track="order-closing"><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>Order the eBook · ₦3,000<span class="sr-only"> on WhatsApp (opens in a new tab)</span></a>
           </div>
-          <p class="new-tab-note">WhatsApp opens in a new tab or the WhatsApp app.</p>
+          <a class="paperback-pill" href="https://wa.me/2348037008560?text=Hello%2C%20I%20would%20like%20to%20order%20a%20paperback%20copy%20of%20The%20House%20by%20Austine%20Ojo." target="_blank" rel="noopener noreferrer" data-track="paperback-order">
+            <span class="pill-dot" aria-hidden="true"></span>Paperback available on WhatsApp<span class="sr-only"> (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
-        <div class="cta-art" aria-hidden="true">
-          <img src="assets/img/the-house-book-thumbnail-480.jpg" width="1536" height="1536" alt="" loading="lazy" decoding="async">
+        <div class="order-art" aria-hidden="true">
+          <img src="assets/img/the-house-book-cutout-360.png" width="786" height="1337" alt="" loading="lazy" decoding="async">
         </div>
       </div>
 
       <div class="bank-panel" aria-labelledby="bank-title">
-        <h3 id="bank-title">Bank transfer details</h3>
-        <dl class="bank-meta">
-          <div><dt>Account name</dt><dd>HARD TRUTH GOSPEL MISSION</dd></div>
-          <div><dt>Bank</dt><dd>GTBank (Guaranty Trust Bank)</dd></div>
-        </dl>
-        <ul class="bank-grid" role="list">
-          <li class="bank-card">
-            <p class="bank-cur"><span class="bank-code">NGN</span> Naira account</p>
-            <p class="bank-num" id="acct-ngn">3001633102</p>
-            <button type="button" class="copy-btn" data-copy="3001633102" aria-describedby="acct-ngn">Copy<span class="sr-only"> NGN account number</span></button>
+        <div class="bank-head">
+          <h3 id="bank-title">Bank transfer</h3>
+          <p class="bank-holder"><span>HARD TRUTH GOSPEL MISSION</span><span class="bank-sep" aria-hidden="true">·</span><span>GTBank (Guaranty Trust Bank)</span></p>
+        </div>
+        <ul class="bank-list" role="list">
+          <li class="bank-row">
+            <span class="bank-code" aria-hidden="true">NGN</span>
+            <span class="bank-info"><span class="bank-cur">Naira (NGN)</span><span class="bank-num" id="acct-ngn">3001633102</span></span>
+            <button type="button" class="copy-btn" data-copy="3001633102" aria-describedby="acct-ngn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="copy-label">Copy</span><span class="sr-only"> NGN account number</span></button>
           </li>
-          <li class="bank-card">
-            <p class="bank-cur"><span class="bank-code">USD</span> US Dollar account</p>
-            <p class="bank-num" id="acct-usd">3001633126</p>
-            <button type="button" class="copy-btn" data-copy="3001633126" aria-describedby="acct-usd">Copy<span class="sr-only"> USD account number</span></button>
+          <li class="bank-row">
+            <span class="bank-code" aria-hidden="true">USD</span>
+            <span class="bank-info"><span class="bank-cur">US Dollar (USD)</span><span class="bank-num" id="acct-usd">3001633126</span></span>
+            <button type="button" class="copy-btn" data-copy="3001633126" aria-describedby="acct-usd"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="copy-label">Copy</span><span class="sr-only"> USD account number</span></button>
           </li>
-          <li class="bank-card">
-            <p class="bank-cur"><span class="bank-code">GBP</span> British Pound account</p>
-            <p class="bank-num" id="acct-gbp">3001633140</p>
-            <button type="button" class="copy-btn" data-copy="3001633140" aria-describedby="acct-gbp">Copy<span class="sr-only"> GBP account number</span></button>
+          <li class="bank-row">
+            <span class="bank-code" aria-hidden="true">GBP</span>
+            <span class="bank-info"><span class="bank-cur">British Pound (GBP)</span><span class="bank-num" id="acct-gbp">3001633140</span></span>
+            <button type="button" class="copy-btn" data-copy="3001633140" aria-describedby="acct-gbp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="copy-label">Copy</span><span class="sr-only"> GBP account number</span></button>
           </li>
-          <li class="bank-card">
-            <p class="bank-cur"><span class="bank-code">EUR</span> Euro account</p>
-            <p class="bank-num" id="acct-eur">3001633164</p>
-            <button type="button" class="copy-btn" data-copy="3001633164" aria-describedby="acct-eur">Copy<span class="sr-only"> EUR account number</span></button>
+          <li class="bank-row">
+            <span class="bank-code" aria-hidden="true">EUR</span>
+            <span class="bank-info"><span class="bank-cur">Euro (EUR)</span><span class="bank-num" id="acct-eur">3001633164</span></span>
+            <button type="button" class="copy-btn" data-copy="3001633164" aria-describedby="acct-eur"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="copy-label">Copy</span><span class="sr-only"> EUR account number</span></button>
           </li>
         </ul>
-        <p class="bank-note">Paying from outside Nigeria? Use the USD, GBP or EUR account and confirm the amount with us on WhatsApp before you transfer.</p>
+        <p class="bank-note">Paying from outside Nigeria? Use the USD, GBP or EUR account and confirm the amount on WhatsApp first.</p>
       </div>
     </div>
   </section>
+
   <!-- FAQ -->
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="container narrow">
@@ -510,7 +527,7 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
         <h2 id="faq-title">Questions readers ask</h2>
       </div>
       <div class="faq-list">
-        <details class="faq-item" open>
+        <details class="faq-item">
           <summary><h3>What is The House about?</h3></summary>
           <p>It explores life in Christ, knowing God personally, meditation, discipleship, and prayer through Scripture reflections and the author's experiences.</p>
         </details>
@@ -529,7 +546,6 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
       </div>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
@@ -537,10 +553,10 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
     <div class="footer-brand">
       <p class="footer-title">The House</p>
       <p class="footer-sub">2nd Corinthians 5:17 · by Austine Ojo</p>
-      <a class="footer-social" href="https://www.facebook.com/share/1FLTpqYwCx/" target="_blank" rel="noopener noreferrer" data-track="facebook-footer">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg>
-        <span>Follow Hard Truth Gospel Mission on Facebook<span class="sr-only"> (opens in a new tab)</span></span>
-      </a>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/share/1FLTpqYwCx/" target="_blank" rel="noopener noreferrer" data-track="facebook-footer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg><span>Follow Hard Truth Gospel Mission<span class="sr-only"> on Facebook (opens in a new tab)</span></span></a>
+        <a href="https://wa.me/2348037008560" target="_blank" rel="noopener noreferrer" data-track="whatsapp-footer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg><span>+234 803 700 8560<span class="sr-only"> on WhatsApp (opens in a new tab)</span></span></a>
+      </div>
     </div>
     <nav class="footer-nav" aria-labelledby="footer-nav-title">
       <h2 class="footer-heading" id="footer-nav-title">Page navigation</h2>
@@ -556,10 +572,12 @@ d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
     </nav>
   </div>
   <div class="container footer-base">
-    <p>The House · Austine Ojo · Hard Truth Gospel Mission · WhatsApp <a href="https://wa.me/2348037008560" target="_blank" rel="noopener noreferrer" data-track="whatsapp-footer">+234 803 700 8560</a></p>
+    <p>The House · Austine Ojo · Hard Truth Gospel Mission</p>
   </div>
 </footer>
 
-<script src="main.js?v=202610100423" defer></script>
+<a class="wa-fab" id="wa-fab" href="https://wa.me/2348037008560?text=Hello%2C%20I%20would%20like%20to%20order%20the%20eBook%20of%20The%20House%20by%20Austine%20Ojo%20%28%E2%82%A63%2C000%29." target="_blank" rel="noopener noreferrer" data-track="order-fab" aria-label="Order the eBook on WhatsApp (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg><span class="wa-fab-label">Order</span></a>
+
+<script src="main.js?v=202610100451" defer></script>
 </body>
 </html>
