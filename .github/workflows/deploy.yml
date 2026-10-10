@@ -1,5 +1,8 @@
 name: Build and publish site
 
+# Publishes the built site to BOTH places GitHub Pages may be pointed at:
+#   - the root of `main` (Pages source: main / root)
+#   - the `gh-pages` branch (Pages source: gh-pages / root)
 on:
   push:
     branches: [main]
@@ -22,9 +25,20 @@ jobs:
           python-version: "3.12"
       - run: pip install Pillow==11.0.0
       - run: python scripts/build.py
+      - name: Sync built site into main root
+        run: |
+          cp -a dist/. .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Root already up to date"; else
+            git commit -q -m "Update built site [skip ci]"
+            git push origin HEAD:main
+          fi
       - name: Publish dist/ to gh-pages branch
         run: |
           cd dist
+          rm -rf .git
           git init -q -b gh-pages
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -37,7 +37,16 @@ cd dist && python3 -m http.server 8000   # open http://localhost:8000
 
 ## Hosting
 
-GitHub Pages serves the `gh-pages` branch (Settings → Pages → Source: *Deploy from a branch*, `gh-pages` / root). Never edit `gh-pages` by hand; it is overwritten on every build.
+The workflow publishes the built site to **both** the root of `main` and the `gh-pages` branch, so Pages works with either source (Settings → Pages → *Deploy from a branch* → `main` / root, or `gh-pages` / root).
+
+These files at the repo root are **generated — do not edit them by hand**: `index.html`, `styles.css`, `main.js`, `favicon.ico`, `icons/`, `site.webmanifest`, `sitemap.xml`, `robots.txt`, `.nojekyll`, `assets/img/`. Edit `src/`, `content/` or `site.config.json` instead and push; the workflow rebuilds.
+
+### Custom domain (hardtruthgospelmission.org)
+
+As of 10 Oct 2026 the domain's nameservers (`ns1/ns2.hostley.io`) do not respond, so it cannot point anywhere yet. When DNS is fixed:
+1. At the DNS host add A records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and a CNAME for `www` → `seyidev-ops.github.io`.
+2. Set `siteOrigin` in `site.config.json` to `https://hardtruthgospelmission.org` and push.
+3. In Settings → Pages enter the custom domain, wait for the check, then tick *Enforce HTTPS*.
 
 ## Notes and known limits
 

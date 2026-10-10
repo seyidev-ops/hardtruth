@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seyidev-ops.github.io/hardtruth/sitemap.xml
