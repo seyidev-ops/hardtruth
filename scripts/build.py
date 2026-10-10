@@ -164,7 +164,9 @@ def json_ld(o):
         "@context": "https://schema.org",
         "@graph": [
             {"@type": "WebSite", "@id": f"{page}#website", "url": page, "name": CONFIG["siteName"],
-             "inLanguage": "en", "about": {"@id": f"{page}#book"}},
+             "inLanguage": "en", "about": {"@id": f"{page}#book"},
+             "copyrightYear": datetime.now(timezone.utc).year,
+             "copyrightHolder": {"@type": "Organization", "name": CONFIG["rightsHolder"]}},
             {"@type": "WebPage", "@id": f"{page}#webpage", "url": page, "name": PAGE_TITLE,
              "description": PAGE_DESCRIPTION, "inLanguage": "en",
              "isPartOf": {"@id": f"{page}#website"}, "mainEntity": {"@id": f"{page}#book"},
@@ -245,6 +247,93 @@ def bank_accounts_html():
     return "\n".join(out)
 
 
+
+# ---------------------------------------------------------------- footer (shared by every page)
+FB_PATH = ("M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3"
+           "h2.6V21h3.1Z")
+WA_PATH = re.search(r'd="([^"]+)"', WA_ICON).group(1)
+X_PATH = "M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.3 4.7H5.5l11.2 14.5Z"
+TG_PATH = "M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5ZM8.5 14l9.4-5.9c.5-.3.9-.1.5.2l-8 7.2-.3 3.3L8.5 14Z"
+
+
+def _svg(path, extra=""):
+    return f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"{extra}><path fill="currentColor" d="{path}"/></svg>'
+
+
+def share_links(o):
+    from urllib.parse import quote
+    url = f"{o}/"
+    text = CONFIG.get("shareText") or PAGE_TITLE
+    mail_icon = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5" '
+                 'fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" '
+                 'stroke-width="2" stroke-linejoin="round"/></svg>')
+    link_icon = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2" '
+                 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" '
+                 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>')
+    more_icon = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/>'
+                 '<circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="19" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/>'
+                 '<path d="m8.3 13.3 7.4 4.4M15.7 6.3 8.3 10.7" stroke="currentColor" stroke-width="2"/></svg>')
+    items = [
+        ("whatsapp", "WhatsApp", f"https://wa.me/?text={quote(text + ' ' + url)}", _svg(WA_PATH)),
+        ("facebook", "Facebook", f"https://www.facebook.com/sharer/sharer.php?u={quote(url, safe='')}", _svg(FB_PATH)),
+        ("x", "X", f"https://x.com/intent/post?text={quote(text)}&url={quote(url, safe='')}", _svg(X_PATH)),
+        ("telegram", "Telegram", f"https://t.me/share/url?url={quote(url, safe='')}&text={quote(text)}", _svg(TG_PATH)),
+        ("email", "Email", f"mailto:?subject={quote(CONFIG['bookTitle'] + ' by ' + CONFIG['author'])}&body={quote(text + chr(10) + chr(10) + url)}", mail_icon),
+    ]
+    out = []
+    for key, name, href, icon in items:
+        tgt = '' if href.startswith("mailto:") else ' target="_blank" rel="noopener noreferrer"'
+        sr = "" if href.startswith("mailto:") else " (opens in a new tab)"
+        out.append(f'<li><a class="share-btn share-{key}" href="{esc(href)}"{tgt} data-track="share-{key}">{icon}'
+                   f'<span>{name}</span><span class="sr-only"> — share this book{sr}</span></a></li>')
+    out.append(f'<li><button type="button" class="share-btn share-copy" data-copy="{esc(url)}" data-copy-what="Link" data-track="share-copy">'
+               f'{link_icon}<span class="copy-label">Copy link</span></button></li>')
+    out.append(f'<li hidden data-native-share><button type="button" class="share-btn share-native" data-share-url="{esc(url)}" '
+               f'data-share-text="{esc(text)}" data-share-title="{esc(PAGE_TITLE)}" data-track="share-native">{more_icon}<span>More</span></button></li>')
+    return "\n          ".join(out)
+
+
+def footer_html(o, base=""):
+    """base is '' on the home page and './' on the policy pages, so section links work from both."""
+    year = datetime.now(timezone.utc).year
+    sections = [("top", "Home"), ("about", "About the Book"), ("chapters", "Chapters"), ("inside", "Inside the Cover"),
+                ("author", "The Author"), ("get-the-book", "Order the eBook"), ("faq", "Reader Questions")]
+    nav = "\n          ".join(f'<li><a href="{base}#{sid}">{label}</a></li>' for sid, label in sections)
+    holder = esc(CONFIG["rightsHolder"])
+    return f"""<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <p class="footer-title">The House</p>
+      <p class="footer-sub">2nd Corinthians 5:17 · by {esc(CONFIG["author"])}</p>
+      <div class="footer-social">
+        <a href="{esc(CONFIG["facebookUrl"])}" target="_blank" rel="noopener noreferrer" data-track="facebook-footer">{_svg(FB_PATH)}<span>Follow {esc(CONFIG["facebookPageName"])}<span class="sr-only"> on Facebook (opens in a new tab)</span></span></a>
+        <a href="{esc(whatsapp_url(False))}" target="_blank" rel="noopener noreferrer" data-track="whatsapp-footer">{_svg(WA_PATH)}<span>{esc(CONFIG["whatsappDisplay"])}<span class="sr-only"> on WhatsApp (opens in a new tab)</span></span></a>
+      </div>
+    </div>
+    <nav class="footer-nav" aria-labelledby="footer-nav-title">
+      <h2 class="footer-heading" id="footer-nav-title">Page navigation</h2>
+      <ul>
+          {nav}
+      </ul>
+    </nav>
+  </div>
+  <div class="container footer-share" aria-labelledby="footer-share-title">
+    <h2 class="footer-heading" id="footer-share-title">Share this book</h2>
+    <p class="footer-share-note">Know someone who would be blessed by <cite>The House</cite>? Send them the link.</p>
+    <ul class="share-list" role="list">
+          {share_links(o)}
+    </ul>
+  </div>
+  <div class="container footer-base">
+    <p class="footer-copy">© {year} {holder}. All rights reserved.</p>
+    <ul class="footer-legal" role="list">
+      <li><a href="{base or './'}privacy.html">Privacy Policy</a></li>
+      <li><a href="{base or './'}terms.html">Terms of Use</a></li>
+    </ul>
+  </div>
+</footer>"""
+
+
 def build_html(o):
     tpl = (ROOT / "src" / "index.template.html").read_text(encoding="utf-8")
     primary, secondary, closing, faq = ctas()
@@ -284,6 +373,7 @@ def build_html(o):
         "FACEBOOK_URL": esc(CONFIG["facebookUrl"]),
         "PUBLISHER": esc(CONFIG["publisher"]),
         "ISBN_DISPLAY": esc(CONFIG["isbnDisplay"]),
+        "FOOTER": footer_html(o),
     }
     out = tpl
     for k, v in values.items():
@@ -292,6 +382,46 @@ def build_html(o):
     if left:
         fail(f"unreplaced template tokens: {sorted(set(left))}")
     (DIST / "index.html").write_text(out, encoding="utf-8")
+    build_policies(o, robots)
+
+
+
+POLICIES = {
+    "privacy": ("Privacy Policy",
+                "How Hard Truth Gospel Mission handles information when you visit this site or order The House by Austine Ojo."),
+    "terms": ("Terms of Use",
+              "Terms for using this site and buying The House by Austine Ojo: the eBook licence, ordering, payment and problems with an order."),
+}
+
+
+def build_policies(o, robots):
+    tpl = (ROOT / "src" / "policy.template.html").read_text(encoding="utf-8")
+    shared = {
+        "AUTHOR": esc(CONFIG["author"]), "RIGHTS_HOLDER": esc(CONFIG["rightsHolder"]),
+        "YEAR": str(datetime.now(timezone.utc).year), "PUBLISHER": esc(CONFIG["publisher"]),
+        "ISBN_DISPLAY": esc(CONFIG["isbnDisplay"]), "PRICE_DISPLAY": esc(CONFIG["offer"]["priceDisplay"]),
+        "ACCOUNT_NAME": esc(CONFIG["bankAccounts"]["accountName"]), "BANK_NAME": esc(CONFIG["bankAccounts"]["bank"]),
+        "WHATSAPP_URL": esc(whatsapp_url(False)), "WHATSAPP_DISPLAY": esc(CONFIG["whatsappDisplay"]),
+    }
+    for slug, (title, desc) in POLICIES.items():
+        body = (ROOT / "content" / f"{slug}.html").read_text(encoding="utf-8")
+        for k, v in shared.items():
+            body = body.replace("{{" + k + "}}", v)
+        values = dict(shared)
+        values.update({
+            "POLICY_TITLE": esc(title), "POLICY_DESCRIPTION": esc(desc), "POLICY_BODY": body.rstrip(),
+            "POLICIES_UPDATED": esc(CONFIG["policiesUpdated"]), "SITE_NAME": esc(CONFIG["siteName"]),
+            "CANONICAL": esc(f"{o}/{slug}.html"), "OG_IMAGE": esc(f"{o}/assets/the-house-book-thumbnail.jpg"),
+            "ROBOTS_META": robots, "VERSION": datetime.now(timezone.utc).strftime("%Y%m%d%H%M"),
+            "FOOTER": footer_html(o, "./"),
+        })
+        out = tpl
+        for k, v in values.items():
+            out = out.replace("{{" + k + "}}", v)
+        left = re.findall(r"\{\{[A-Z_]+\}\}", out)
+        if left:
+            fail(f"unreplaced tokens in {slug}.html: {sorted(set(left))}")
+        (DIST / f"{slug}.html").write_text(out, encoding="utf-8")
 
 
 def build_seo(o):

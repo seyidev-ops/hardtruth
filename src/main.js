@@ -163,9 +163,12 @@
     var label = btn.querySelector(".copy-label");
     var done = function () {
       btn.classList.add("is-copied");
+      var what = btn.getAttribute("data-copy-what") || "Account number";
+      var idle = btn.getAttribute("data-idle") || (label ? label.textContent : "");
+      btn.setAttribute("data-idle", idle);
       if (label) label.textContent = "Copied";
-      if (status) status.textContent = "Account number " + value + " copied";
-      setTimeout(function () { btn.classList.remove("is-copied"); if (label) label.textContent = "Copy"; }, 1800);
+      if (status) status.textContent = what === "Link" ? "Link copied" : what + " " + value + " copied";
+      setTimeout(function () { btn.classList.remove("is-copied"); if (label) label.textContent = idle; }, 1800);
     };
     var fallback = function () {
       var ta = document.createElement("textarea");
@@ -177,6 +180,18 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(value).then(done, fallback);
     else fallback();
   });
+
+  /* ---------- Native share sheet (phones), offered only where the browser has one ---------- */
+  if (navigator.share) {
+    var natives = document.querySelectorAll("[data-native-share]");
+    for (var n = 0; n < natives.length; n++) natives[n].hidden = false;
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-share-url]");
+      if (!b) return;
+      navigator.share({ title: b.getAttribute("data-share-title"), text: b.getAttribute("data-share-text"),
+                        url: b.getAttribute("data-share-url") }).catch(function () {});
+    });
+  }
 
   /* ---------- Lightweight event hooks (no analytics loaded unless configured) ---------- */
   document.addEventListener("click", function (e) {

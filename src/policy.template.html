@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme-pref="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{POLICY_TITLE}} | The House by {{AUTHOR}}</title>
+<meta name="description" content="{{POLICY_DESCRIPTION}}">
+{{ROBOTS_META}}
+<link rel="canonical" href="{{CANONICAL}}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAF8F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101322" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{SITE_NAME}}">
+<meta property="og:title" content="{{POLICY_TITLE}} | The House by {{AUTHOR}}">
+<meta property="og:description" content="{{POLICY_DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:image:alt" content="The House by Austine Ojo, a book about life in Christ">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<script>
+(function(){var p="system";try{p=localStorage.getItem("the-house-theme")||"system"}catch(e){}
+if(p!=="day"&&p!=="night")p="system";var d=document.documentElement;d.setAttribute("data-theme-pref",p);
+var dark=p==="night"||(p==="system"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
+d.setAttribute("data-theme",dark?"dark":"light");d.classList.add("js");})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v={{VERSION}}">
+</head>
+<body class="policy-page">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href="./" aria-label="The House — home">
+      <svg class="wordmark-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4 15.5 16 5l12 10.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 13.5V27h16V13.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M14 27v-6.5h4V27" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <span>The House</span>
+    </a>
+    <div class="header-actions">
+      <a class="policy-back" href="./">Back<span class="policy-back-long">&nbsp;to the book</span></a>
+      <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Appearance: System. Switch to Day" title="Appearance: System">
+        <svg class="ti ti-day" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
+        <svg class="ti ti-night" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.4 8.4 0 0 1 9.4 4a8.4 8.4 0 1 0 10.6 10.6Z" fill="currentColor"/></svg>
+        <svg class="ti ti-system" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor"/></svg>
+        <span class="theme-toggle-label" aria-hidden="true">System</span>
+      </button>
+    </div>
+  </div>
+  <p class="sr-only" aria-live="polite" id="theme-status"></p>
+</header>
+
+<main id="main" tabindex="-1">
+  <article class="section policy">
+    <div class="container narrow">
+      <p class="section-kicker">{{RIGHTS_HOLDER}}</p>
+      <h1>{{POLICY_TITLE}}</h1>
+      <p class="policy-updated">Last updated {{POLICIES_UPDATED}}</p>
+{{POLICY_BODY}}
+    </div>
+  </article>
+</main>
+
+{{FOOTER}}
+
+<script src="main.js?v={{VERSION}}" defer></script>
+</body>
+</html>

@@ -11,11 +11,14 @@ Static HTML, built from structured content, deployed to GitHub Pages.
 |---|---|
 | `site.config.json` | **One place** for the site origin, Facebook link, purchase URL, offer, indexing and verification IDs |
 | `content/chapters.json` | The 15 chapter titles, briefs and manuscript page references (references are not published) |
+| `content/privacy.html`, `content/terms.html` | Body text of the Privacy Policy and Terms of Use pages (tokens such as `{{WHATSAPP_URL}}` are filled at build time) |
+| `src/policy.template.html` | Page shell for the two policy pages |
 | `src/index.template.html` | Page markup with `{{TOKENS}}` filled at build time |
 | `src/styles.css`, `src/main.js` | Styles (Day/Night tokens) and progressive enhancements (theme switch, mobile menu, gentle reveal) |
 | `assets/` | The four supplied images, unchanged |
 | `seo/*.template` | Sitemap and robots templates (`{{SITE_ORIGIN}}`) |
 | `scripts/build.py` | Builds everything into `dist/` and fails if tokens, placeholders or private files would ship |
+| `privacy.html`, `terms.html` (built) | Generated policy pages, listed in the sitemap |
 | `.github/workflows/deploy.yml` | Builds and publishes `dist/` to the `gh-pages` branch on every push to `main` |
 | `BUILD_BRIEF.md` | The original build specification |
 
@@ -32,6 +35,8 @@ cd dist && python3 -m http.server 8000   # open http://localhost:8000
 - **Purchase link becomes available:** set `purchaseUrl` in `site.config.json`. Every primary button switches to **Get Your Copy** automatically. Add price/format to the page copy only once confirmed.
 - **Stable Facebook page URL:** replace `facebookUrl`.
 - **Custom domain:** set `siteOrigin` to the new https origin, add the domain under repo Settings → Pages → Custom domain, and point DNS at GitHub Pages. Canonical, Open Graph, JSON-LD, sitemap and robots all update from `siteOrigin`.
+- **Footer:** built once in `scripts/build.py` (`footer_html`) and used on every page. It carries the copyright line (`© <build year> rightsHolder`), the share buttons (WhatsApp, Facebook, X, Telegram, Email, Copy link, and the phone's own share sheet where available, all sharing the home page with `shareText`), and the Privacy Policy and Terms of Use links.
+- **Policies changed:** edit `content/privacy.html` or `content/terms.html` and set `policiesUpdated` in `site.config.json`. If analytics is ever switched on (`analyticsId`), update the Privacy Policy first: it currently says no tracking cookies are used.
 - **Hide from search (preview mode):** set `indexable` to `false` (adds `noindex`).
 - **Search Console / Bing:** paste the verification codes into `googleSiteVerification` / `bingSiteVerification`, push, then submit `sitemap.xml`.
 
@@ -39,7 +44,7 @@ cd dist && python3 -m http.server 8000   # open http://localhost:8000
 
 The workflow publishes the built site to **both** the root of `main` and the `gh-pages` branch, so Pages works with either source (Settings → Pages → *Deploy from a branch* → `main` / root, or `gh-pages` / root).
 
-These files at the repo root are **generated — do not edit them by hand**: `index.html`, `styles.css`, `main.js`, `favicon.ico`, `icons/`, `site.webmanifest`, `sitemap.xml`, `robots.txt`, `.nojekyll`, `assets/img/`. Edit `src/`, `content/` or `site.config.json` instead and push; the workflow rebuilds.
+These files at the repo root are **generated — do not edit them by hand**: `index.html`, `privacy.html`, `terms.html`, `styles.css`, `main.js`, `favicon.ico`, `icons/`, `site.webmanifest`, `sitemap.xml`, `robots.txt`, `.nojekyll`, `assets/img/`. Edit `src/`, `content/` or `site.config.json` instead and push; the workflow rebuilds.
 
 ### Custom domain
 
@@ -72,7 +77,7 @@ DNS (QServers nameservers `ns1/ns2.qservers.net`, switched 10 Oct 2026):
 - [x] Skip link, focus styles, 44px targets, keyboard mobile menu (Escape closes), reduced-motion respected
 - [x] No horizontal overflow at 320, 375, 768, 1440 px
 - [x] Canonical, Open Graph, X card metadata and JSON-LD (WebSite, WebPage, Book, Person) present and parse
-- [x] Sitemap lists only the canonical homepage
+- [x] Sitemap lists the canonical homepage and the two policy pages
 - [ ] Facebook link manually tested
 - [ ] Social preview checked in Facebook Sharing Debugger
 - [ ] Rich Results Test / Schema validator run on the live URL
